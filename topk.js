@@ -17,7 +17,7 @@ const find = (arr = [], el) => {
  * 
  * @param {*} arr 
  * @param {*} n length of the array
- * @param {*} k 
+ * @param {*} k length of top k elements
  */
 const topK = (arr = [], n, k) => {
   // array to keep track of frequency
@@ -27,9 +27,14 @@ const topK = (arr = [], n, k) => {
   }
 
   // fill array fill 0
-  let top = [];
-  top.length = k + 1;
-  top.fill(0);
+  // let top = [];
+  // top.length = k + 1;
+  // top.fill(0);
+
+  // this is the replacement of the above code,
+  // [].fill does not support in IE, therefore we need to use babel to convert it
+  // eg: Array(length).fill(0);
+  let top = Array(k + 1).fill(0);
 
   // iterate till the end of stream
   for (let m = 0; m < n; m++) {
@@ -70,22 +75,26 @@ const topK = (arr = [], n, k) => {
       i--;
     }
 
-    for (let j = 0; j < k && top[j] !== 0; j++) {
-      console.log(top[j] + ' ');
-    }
-
-    console.log();
+    // for (let j = 0; j < k && top[j] !== 0; j++) {
+    //   console.log(top[j] + ' ');
+    // }
+    // console.log();
   }
+  
+  // return top k elements
+  return top.length > 0 && top.slice(0, k);
 };
 
 //--------------
 // TEST SECTION
 //--------------
 let k = 3;
-let arr = [5, 2, 1, 3, 2];
+let arr = [5, 2, 1, 3, 2, 2, 3];
 let n = arr.length;
 
 console.log('Origina Array: ');
 console.log(arr);
 
-topK(arr, n, k);
+let newArr = topK(arr, n, k);
+console.log('New Array: ');
+console.log(newArr);
