@@ -46,11 +46,12 @@ const add = (num1, num2) => {
       carry = 0;
     }
 
+    // eg: 2 + '' = '2'; 1 + '2' = '12'
     retVal = sum + retVal;
   }
 
   // if we still have carry, prepend it retVal
-  // eg: 1 + '566' = 1566;
+  // eg: 1 + '566' = '1566';
   if (carry) {
     retVal = carry + retVal;
   }
