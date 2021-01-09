@@ -50,7 +50,7 @@ const add = (num1, num2) => {
     retVal = sum + retVal;
   }
 
-  // if we still have carry, prepend it retVal
+  // if we still have a carry, prepend it to retVal
   // eg: 1 + '566' = '1566';
   if (carry) {
     retVal = carry + retVal;
